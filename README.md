@@ -21,7 +21,7 @@ The onboard LED (GPIO8) stays on while the alarm rings and blinks while it waits
 
 1. At the alarm time it reads the bed. If the bed reads empty, it doesn't ring (`skip_empty`). If the sensor can't be reached, it rings anyway.
 2. It plays bursts of beeps. The volume ramps from `start_volume` to `max_volume` over `ramp` seconds (by default 0 → 100 over 60 s), then holds.
-3. **It counts people (occupied sides), not which side they're on.** When the count drops below the count at the start for `up_confirm` seconds (3 s), it goes quiet. One person getting up is enough.
+3. **It counts people (occupied sides), not which side they're on.** When the count drops below the count at the start for `up_confirm` seconds (1 s, so two readings in a row), it goes quiet. One person getting up is enough.
 4. For the next `away` seconds (10 min), if the count gets back to where it started for `back_confirm` seconds (15 s), it rings again. The ramp picks up where it left off. After 10 minutes without that, it's done.
 
 Two people in bed, one gets up: the count goes 2 → 1 and the alarm goes quiet. If the other person then rolls onto the empty side, the count stays 1, so the alarm stays quiet. During a roll both sides can read occupied for a second or two. That's why `back_confirm` is longer than `up_confirm`.
@@ -66,7 +66,7 @@ A status line prints every minute while idle and every 5 s while an alarm is goi
 | `beeps` | 4 | Beeps per burst |
 | `pause` | 500 ms | Silence after each burst |
 | `away` | 600 s | After getting up, it rings again if you're back in bed within this |
-| `up_confirm` | 3 s | Fewer in bed for this long counts as getting up |
+| `up_confirm` | 1 s | Fewer in bed for this long counts as getting up |
 | `back_confirm` | 15 s | Back in bed for this long and it rings again |
 | `max_ring` | 30 min | Give up after this much ringing in total (0 = never) |
 | `skip_empty` | on | Don't ring if the bed is empty at alarm time |
@@ -77,8 +77,8 @@ Built-in alarms are in `BUILTIN_ALARMS` in `src/config.h`:
 
 ```cpp
 constexpr AlarmDef BUILTIN_ALARMS[] = {
-  {7, 0, WEEKDAYS},
-  {9, 0, WEEKENDS},
+  {6, 0, WEEKDAYS},
+  {7, 0, WEEKENDS},
 };
 ```
 

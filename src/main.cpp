@@ -312,7 +312,11 @@ static void serviceSession() {
     s.lastPollMs = now;
     int count;
     if (readBed(count)) {
-      onBedReading(count, millis());
+      // Time each reading by when its poll started, not when the HTTP reply
+      // arrived. Polls start BED_POLL_INTERVAL_MS apart, so with up_confirm
+      // of 1 s the second "fewer" reading always confirms, however long each
+      // request took.
+      onBedReading(count, now);
     } else {
       s.lastCount = -1;
     }

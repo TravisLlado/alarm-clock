@@ -37,8 +37,8 @@ struct AlarmDef {
 // and on (saved to flash) but not delete or move it. Alarms added from the
 // web console are kept separately, in flash.
 constexpr AlarmDef BUILTIN_ALARMS[] = {
-  {7, 0, WEEKDAYS},
-  {9, 0, WEEKENDS},
+  {6, 0, WEEKDAYS},
+  {7, 0, WEEKENDS},
 };
 constexpr size_t NUM_BUILTIN_ALARMS {sizeof(BUILTIN_ALARMS) / sizeof(BUILTIN_ALARMS[0])};
 
@@ -89,7 +89,7 @@ constexpr int32_t DEFAULT_PAUSE_MS {500};        // [pause]
 //   SKIP_EMPTY:   if the bed reads empty when an alarm goes off, don't ring.
 //                 If the sensor can't be reached, the alarm rings anyway.
 constexpr int32_t DEFAULT_AWAY_S         {10 * MINUTE};  // s [away]
-constexpr int32_t DEFAULT_UP_CONFIRM_S   {3};            // s [up_confirm]
+constexpr int32_t DEFAULT_UP_CONFIRM_S   {1};            // s [up_confirm]
 constexpr int32_t DEFAULT_BACK_CONFIRM_S {15};           // s [back_confirm]
 constexpr int32_t DEFAULT_MAX_RING_MIN   {30};           // min [max_ring]
 constexpr int32_t DEFAULT_SKIP_EMPTY     {1};            // on/off [skip_empty]
