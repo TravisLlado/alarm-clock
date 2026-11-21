@@ -20,9 +20,9 @@ The onboard LED (GPIO8) stays on while the alarm rings and blinks while it waits
 ## How an alarm goes
 
 1. At the alarm time it reads the bed. If the bed reads empty, it doesn't ring (`skip_empty`). If the sensor can't be reached, it rings anyway.
-2. It plays bursts of beeps. The volume ramps from `start_volume` to `max_volume` over `ramp` seconds (by default 0 → 100 over 60 s), then holds.
+2. It plays bursts of beeps. The volume ramps from `start_volume` to `max_volume` over `ramp` seconds (by default 0 → 100 over 180 s), then holds.
 3. **It counts people (occupied sides), not which side they're on.** When the count drops below the count at the start for `up_confirm` seconds (1 s, so two readings in a row), it goes quiet. One person getting up is enough.
-4. For the next `away` seconds (10 min), if the count gets back to where it started for `back_confirm` seconds (15 s), it rings again. The ramp picks up where it left off. After 10 minutes without that, it's done.
+4. For the next `away` seconds (15 min), if the count gets back to where it started for `back_confirm` seconds (15 s), it rings again. The ramp picks up where it left off. After 15 minutes without that, it's done.
 
 Two people in bed, one gets up: the count goes 2 → 1 and the alarm goes quiet. If the other person then rolls onto the empty side, the count stays 1, so the alarm stays quiet. During a roll both sides can read occupied for a second or two. That's why `back_confirm` is longer than `up_confirm`.
 
@@ -58,14 +58,14 @@ A status line prints every minute while idle and every 5 s while an alarm is goi
 |---|---|---|
 | `start_volume` | 0 % | Volume when an alarm starts |
 | `max_volume` | 100 % | Volume at the end of the ramp |
-| `ramp` | 60 s | Time from start to max volume |
+| `ramp` | 180 s | Time from start to max volume |
 | `wave` | sine | `sine` or `square` |
 | `freq` | 1000 Hz | Beep pitch |
 | `beep` | 100 ms | Length of each beep |
 | `gap` | 100 ms | Silence between beeps in a burst |
 | `beeps` | 4 | Beeps per burst |
 | `pause` | 500 ms | Silence after each burst |
-| `away` | 600 s | After getting up, it rings again if you're back in bed within this |
+| `away` | 900 s | After getting up, it rings again if you're back in bed within this |
 | `up_confirm` | 1 s | Fewer in bed for this long counts as getting up |
 | `back_confirm` | 15 s | Back in bed for this long and it rings again |
 | `max_ring` | 30 min | Give up after this much ringing in total (0 = never) |

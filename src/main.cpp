@@ -4,7 +4,7 @@
  * Plays beep patterns at scheduled times, starting quiet and ramping up. The
  * alarm goes quiet when someone gets out of bed (read from the bed-occupancy
  * sensor over HTTP), and rings again if the bed fills back up within the
- * `away` time (10 min by default).
+ * `away` time (15 min by default).
  *
  * People are counted, not sides: the alarm is satisfied while fewer sides
  * are occupied than when it started ringing. So if one of two people gets up

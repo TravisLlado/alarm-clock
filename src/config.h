@@ -65,7 +65,7 @@ constexpr int32_t ALARM_REFIRE_GUARD {2 * HOUR};
 // amplitude (-12 dB).
 constexpr int32_t DEFAULT_START_VOLUME {0};    // % [start_volume]
 constexpr int32_t DEFAULT_MAX_VOLUME   {100};  // % [max_volume]
-constexpr int32_t DEFAULT_RAMP_S       {60};   // s [ramp]
+constexpr int32_t DEFAULT_RAMP_S       {3 * MINUTE};  // s [ramp]
 
 // Sound: bursts of BEEPS beeps, each BEEP ms long with GAP ms between them,
 // then PAUSE ms of silence before the next burst.
@@ -88,7 +88,7 @@ constexpr int32_t DEFAULT_PAUSE_MS {500};        // [pause]
 //                 e.g. if the sensor is down. 0 = never give up.
 //   SKIP_EMPTY:   if the bed reads empty when an alarm goes off, don't ring.
 //                 If the sensor can't be reached, the alarm rings anyway.
-constexpr int32_t DEFAULT_AWAY_S         {10 * MINUTE};  // s [away]
+constexpr int32_t DEFAULT_AWAY_S         {15 * MINUTE};  // s [away]
 constexpr int32_t DEFAULT_UP_CONFIRM_S   {1};            // s [up_confirm]
 constexpr int32_t DEFAULT_BACK_CONFIRM_S {15};           // s [back_confirm]
 constexpr int32_t DEFAULT_MAX_RING_MIN   {30};           // min [max_ring]
